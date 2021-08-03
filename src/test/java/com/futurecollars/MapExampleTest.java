@@ -8,6 +8,26 @@ import java.util.Map;
 
 class MapExampleTest {
 
+
+    @Test
+    void getValue() {
+        Map<Long, String> names = new HashMap<>();
+        names.put(1L, "Kamil");
+        names.put(2L, null);
+
+        String secondElement = names.get(2L);
+        String thirdElement = names.get(3L);
+
+        Assertions.assertNull(secondElement);
+        Assertions.assertNull(thirdElement);
+
+        boolean isSecondElement = names.containsKey(2L);
+        boolean isThirdElement = names.containsKey(3L);
+
+        Assertions.assertTrue(isSecondElement);
+        Assertions.assertFalse(isThirdElement);
+    }
+
     //unikalne klucze, ale wartosci moga sie powtarzac
     @Test
     void unique() {
@@ -38,7 +58,7 @@ class MapExampleTest {
     }
 
 
-    //jezeli zalezy Ci na kolejnosci to LinkedHashMap
+    //jezeli zalezy Ci na kolejnosci to LinkedHashMap, posortowane -> TreeMap
     @Test
     void iterate2() {
         Map<Person, Integer> people = new HashMap<>();
