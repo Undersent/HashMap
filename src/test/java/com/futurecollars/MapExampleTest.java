@@ -6,13 +6,11 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-class MapExampleTest
-{
+class MapExampleTest {
 
     //unikalne klucze, ale wartosci moga sie powtarzac
     @Test
-    void unique()
-    {
+    void unique() {
         Map<Long, String> names = new HashMap<>();
         names.put(1L, "Kamil");
         System.out.println("Mapa przed nadpisaniem: " + names);
@@ -24,20 +22,17 @@ class MapExampleTest
 
     //iterowanie
     @Test
-    void iterate()
-    {
+    void iterate() {
         Map<Long, String> countries = new HashMap<>();
 
         countries.put(1L, "Poland");
         countries.put(2L, "Germany");
 
-        for (Long key : countries.keySet())
-        {
+        for (Long key : countries.keySet()) {
             System.out.println("Key: " + key + ", value: " + countries.get(key));
         }
 
-        for (Map.Entry<Long, String> entry : countries.entrySet())
-        {
+        for (Map.Entry<Long, String> entry : countries.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ", value: " + entry.getValue());
         }
     }
@@ -45,18 +40,15 @@ class MapExampleTest
 
     //jezeli zalezy Ci na kolejnosci to LinkedHashMap
     @Test
-    void iterate2()
-    {
+    void iterate2() {
         Map<Person, Integer> people = new HashMap<>();
-        for (int i = 0; i < 10; i++)
-        {
+        for (int i = 0; i < 10; i++) {
             people.put(new Person("Test" + i), i);
         }
         System.out.println("Order map: " + people);
 
 
-        for (int i = 10; i < 20; i++)
-        {
+        for (int i = 10; i < 20; i++) {
             people.put(new Person("Test" + i), i);
         }
         System.out.println("Order map: " + people);
@@ -64,8 +56,7 @@ class MapExampleTest
 
     //dla nulli jest specjalny bucket bo jak na nullu wywolac hashcode - zerowy bucket
     @Test
-    void nullValues()
-    {
+    void nullValues() {
         Map<Person, Person> people = new HashMap<>();
         Person rafal = new Person("Rafal");
         people.put(null, rafal);
@@ -77,8 +68,7 @@ class MapExampleTest
 
     //klucze niemodyfikowalne
     @Test
-    void immutable()
-    {
+    void immutable() {
         Person rafal = new Person("Rafal");
         Person lawro = new Person("Lawro");
         Person jan = new Person("Jan");

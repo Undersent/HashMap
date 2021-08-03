@@ -13,15 +13,14 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
-public class ListSimulation
-{
+public class ListSimulation {
     public static final String Title = "Simulation";
 
-    public void start()
-    {
+    public void start() {
         int[] sizes = new int[]{1000, 1500, 2000, 2500, 3000, 3500,
                 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500,
                 8000, 8500, 9000, 9500, 10000};
@@ -30,13 +29,11 @@ public class ListSimulation
         Random rand = new Random();
 
 
-        for (int i = 0; i < sizes.length; i++)
-        {
+        for (int i = 0; i < sizes.length; i++) {
             int size = sizes[i];
             List<Person> people = new LinkedList<>();
-            
-            for (int j = 0; j < size; j++)
-            {
+
+            for (int j = 0; j < size; j++) {
                 String generatedString = RandomStringUtils.random(20, true, true);
                 people.add(new Person(generatedString));
 
@@ -44,8 +41,7 @@ public class ListSimulation
             System.out.println("Did the calculations for the size: " + size);
             long start = System.nanoTime();
 
-            for (int j = 0; j < numberOfGetters; j++)
-            {
+            for (int j = 0; j < numberOfGetters; j++) {
                 int randomValue = rand.nextInt((size));
                 people.get(randomValue);
             }
@@ -56,17 +52,14 @@ public class ListSimulation
         }
 
 
-
         display(sizes, times);
     }
 
 
-    private void display(int[] sizes, List<Integer> times)
-    {
+    private void display(int[] sizes, List<Integer> times) {
         XYSeries series = new XYSeries("Time");
         String[] labels = new String[sizes.length];
-        for(int i = 0; i<sizes.length; i++)
-        {
+        for (int i = 0; i < sizes.length; i++) {
             series.add(i, times.get(i));
             String value = String.valueOf(sizes[i]);
             labels[i] = value;
@@ -79,12 +72,10 @@ public class ListSimulation
         XYSplineRenderer r = new XYSplineRenderer(800);
         XYPlot xyplot = new XYPlot(dataset, domain, range, r);
         JFreeChart chart = new JFreeChart(xyplot);
-        ChartPanel chartPanel = new ChartPanel(chart)
-        {
+        ChartPanel chartPanel = new ChartPanel(chart) {
 
             @Override
-            public Dimension getPreferredSize()
-            {
+            public Dimension getPreferredSize() {
                 return new Dimension(640, 480);
             }
         };
